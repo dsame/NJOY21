@@ -14,7 +14,8 @@ jobs:
     strategy:
       matrix:
         os: [ ubuntu-18.04, macos-10.15 ]
-        cxx: [ g++-8, clang++ ]
+        cxx: [ g++-9, clang++ ]
+        cc: [gcc-9, clang ]
         vFortran: [ gfortran-8 ]
         build_type: [ Debug, Release ]
 
@@ -31,7 +32,7 @@ jobs:
     - name: mkdir bin
       run: mkdir bin 
     - name: cmake
-      run: cmake -D CMAKE_Fortran_COMPILER=`which ${{matrix.vFortran}}` -D CMAKE_CXX_COMPILER=`which ${{matrix.cxx}}` -D CMAKE_BUILD_TYPE=${{matrix.build_type}} ..  
+      run: cmake -D CMAKE_Fortran_COMPILER=`which ${{matrix.vFortran}}` -D CMAKE_CXX_COMPILER=`which ${{matrix.cxx}}` -D CMAKE_C_COMPILER=`which ${{matrix.cc}}`  -D CMAKE_BUILD_TYPE=${{matrix.build_type}} ..  
       working-directory: ./bin
     - name: make
       run: make -j2 VERBOSE=1
