@@ -1,6 +1,7 @@
 # GitHub workflow to enable continuous integration
 name: Continuous Integration
 
+
 # This workflow is triggered on pushes and pull requests to the repository.
 on: 
   push:
